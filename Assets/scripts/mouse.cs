@@ -9,6 +9,17 @@ public class mouse : MonoBehaviour
     public float mouseSensitivity = 1f;
     float xRotation = 0f;
 
+    [SerializeField]
+    private Transform _cube;
+
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Confined;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -20,5 +31,17 @@ public class mouse : MonoBehaviour
 
         transform.transform.eulerAngles = new Vector3(xRotation, transform.rotation.eulerAngles.y, 0f);
         transform.Rotate(Vector3.up * mouseX);
+
+        // vettori per la camera e per puntare gli oggetti non ci ho capito una secchia quello che ho scritto funziona basta dilli che quando vede la sfera si trasforma
+        Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(rayOrigin, out hitInfo))
+        {
+            if (hitInfo.collider = )
+            {
+
+            }
+        }
     }
 }
