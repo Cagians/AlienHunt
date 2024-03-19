@@ -868,6 +868,7 @@ MonoBehaviour:
   trasformationKey: 101
   interactionRange: 50
   camerapref: {fileID: 1517847707}
+  cameramov: {fileID: 1092251167}
 --- !u!1 &589081226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,6 +1216,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1092251166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1092251167}
+  m_Layer: 0
+  m_Name: cameramov
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1092251167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092251166}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 27, z: -40}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1862857439}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1104634359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,6 +1706,7 @@ Transform:
   m_Children:
   - {fileID: 1415959171}
   - {fileID: 1517847707}
+  - {fileID: 1092251167}
   m_Father: {fileID: 1140308536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1862857441
@@ -1792,7 +1825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1415959171}
   centro: {fileID: 1862857439}
-  camerapref: {fileID: 1517847707}
+  cameramov: {fileID: 1092251167}
 --- !u!1 &1921437797
 GameObject:
   m_ObjectHideFlags: 0

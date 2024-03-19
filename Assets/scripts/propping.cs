@@ -10,6 +10,7 @@ public class propping : MonoBehaviour
     public float interactionRange = 50f;
     int layerMask=1<<6;
     public Transform camerapref;
+    public Transform cameramov;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +50,7 @@ public class propping : MonoBehaviour
                     pTransform.localScale=transform.localScale;
                     pTransform.rotation=transform.rotation;
                     
-                    camera.position = camerapref.position + camera.TransformDirection(-Vector3.forward)*0.05f*transform.localScale.y;
+                    cameramov.position = camerapref.position + camera.TransformDirection(-Vector3.forward)*0.05f*transform.localScale.y;
                     
                 }
             }
