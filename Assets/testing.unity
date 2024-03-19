@@ -633,7 +633,7 @@ GameObject:
   - component: {fileID: 574387248}
   - component: {fileID: 574387247}
   - component: {fileID: 574387253}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,6 +656,9 @@ MonoBehaviour:
   direzione: {fileID: 589081232}
   speed: 1500
   mov: {fileID: 574387253}
+  terreno:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!54 &574387248
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -816,6 +819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transform: {fileID: 589081232}
   mouseSensitivity: 1
+  _cube: {fileID: 0}
 --- !u!114 &589081228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1629,6 +1633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transform: {fileID: 1862857439}
   mouseSensitivity: 1
+  _cube: {fileID: 0}
 --- !u!1 &1921437797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,7 +1924,7 @@ GameObject:
   - component: {fileID: 2055758575}
   - component: {fileID: 2055758574}
   - component: {fileID: 2055758573}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pavimento
   m_TagString: Untagged
   m_Icon: {fileID: 0}
