@@ -2093,6 +2093,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: razoLiscio
       objectReference: {fileID: 0}
+    - target: {fileID: 4580310256082202182, guid: c46ade0350047c4499009be0b384b047, type: 3}
+      propertyPath: m_TagString
+      value: Trasformabile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
