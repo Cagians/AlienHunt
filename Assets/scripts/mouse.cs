@@ -39,19 +39,6 @@ public class mouse : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
 
         Trasformazione();
-/*
-        // vettori per la camera e per puntare gli oggetti non ci ho capito una secchia quello che ho scritto funziona basta dilli che quando vede la sfera si trasforma
-        Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitInfo;
-
-        if (Physics.Raycast(rayOrigin, out hitInfo))
-        {
-            if (hitInfo.collider = 0)
-            {
-
-            }
-        }
-*/
     }
     void Trasformazione()
     {
@@ -65,8 +52,10 @@ public class mouse : MonoBehaviour
             // Controllo se l'oggetto colpito è interagibile e se il tasto viene premuto
             if (hit.collider.CompareTag("Trasformabile") && Input.GetKeyDown(trasformationKey))
             {
-                // Cambia la mesh dell'oggetto prop1test
                 MeshFilter objectMesh = hit.collider.gameObject.GetComponent<MeshFilter>();
+                Transform transform=hit.collider.transform;
+                MeshCollider pMeshCollider=playerMesh.GetComponent<MeshCollider>();
+                Transform pTransform=playerMesh.GetComponent<Transform>();
                 MeshFilter playerMeshFilter = playerMesh.GetComponent<MeshFilter>();
                 Renderer render=hit.collider.GetComponent<Renderer>();
                 // Se entrambi gli oggetti hanno una mesh
@@ -74,12 +63,17 @@ public class mouse : MonoBehaviour
 
                 if (objectMesh != null && playerMeshFilter != null)
                 {
-                    //Viene applicata la mesh di prop1test al player
                     playerMeshFilter.mesh = objectMesh.sharedMesh;
+                    pMeshCollider.sharedMesh=objectMesh.sharedMesh;
                     List<Material> m=new List<Material>();
                     render.GetMaterials(m);
                     Renderer pRender=playerMesh.GetComponent<Renderer>();
                     pRender.SetMaterials(m);
+                    pTransform.localScale=transform.localScale;
+                    pTransform.rotation=transform.rotation;
+                    
+                    camera.position+=camera.TransformDirection(-Vector3.forward)*0.05f*transform.localScale.y;
+                    
                 }
             }
         }
