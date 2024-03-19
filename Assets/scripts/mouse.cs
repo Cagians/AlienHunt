@@ -10,18 +10,13 @@ public class mouse : MonoBehaviour
     float xRotation = 0f;
 
     [SerializeField]
-    public GameObject prop1test;
-    public KeyCode trasformationKey = KeyCode.E; 
-    public float interactionRange = 50f; // Distanza per interagire con gli oggetti
-    public Transform playerMesh;
-    public Transform camera;
-    int layerMask=1<<6;
+    public KeyCode trasformationKey = KeyCode.E;
     
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        layerMask = ~layerMask;
+        
         //Cursor.lockState = CursorLockMode.Confined;
     }
 
@@ -37,46 +32,5 @@ public class mouse : MonoBehaviour
 
         transform.transform.eulerAngles = new Vector3(xRotation, transform.rotation.eulerAngles.y, 0f);
         transform.Rotate(Vector3.up * mouseX);
-
-        Trasformazione();
-    }
-    void Trasformazione()
-    {
-        Ray ray = new Ray(camera.position, camera.forward);
-        RaycastHit hit;
-        
-        Debug.DrawRay(camera.position, camera.forward*interactionRange,Color.green);
-        // Se il raycast colpisce un oggetto entro tot range
-        if (Physics.Raycast(ray, out hit, interactionRange,layerMask))
-        {
-            // Controllo se l'oggetto colpito è interagibile e se il tasto viene premuto
-            if (hit.collider.CompareTag("Trasformabile") && Input.GetKeyDown(trasformationKey))
-            {
-                MeshFilter objectMesh = hit.collider.gameObject.GetComponent<MeshFilter>();
-                Transform transform=hit.collider.transform;
-                MeshCollider pMeshCollider=playerMesh.GetComponent<MeshCollider>();
-                Transform pTransform=playerMesh.GetComponent<Transform>();
-                MeshFilter playerMeshFilter = playerMesh.GetComponent<MeshFilter>();
-                Renderer render=hit.collider.GetComponent<Renderer>();
-                // Se entrambi gli oggetti hanno una mesh
-                
-
-                if (objectMesh != null && playerMeshFilter != null)
-                {
-                    playerMeshFilter.mesh = objectMesh.sharedMesh;
-                    pMeshCollider.sharedMesh=objectMesh.sharedMesh;
-                    List<Material> m=new List<Material>();
-                    render.GetMaterials(m);
-                    Renderer pRender=playerMesh.GetComponent<Renderer>();
-                    pRender.SetMaterials(m);
-                    pTransform.localScale=transform.localScale;
-                    pTransform.rotation=transform.rotation;
-                    
-                    camera.position+=camera.TransformDirection(-Vector3.forward)*0.05f*transform.localScale.y;
-                    
-                }
-            }
-        }
-
     }
 }
