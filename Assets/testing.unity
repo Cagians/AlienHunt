@@ -633,7 +633,7 @@ GameObject:
   - component: {fileID: 574387248}
   - component: {fileID: 574387247}
   - component: {fileID: 574387253}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -821,9 +821,10 @@ MonoBehaviour:
   transform: {fileID: 589081232}
   mouseSensitivity: 1
   prop1test: {fileID: 0}
-  tastoTrasformazione: 101
+  trasformationKey: 101
   interactionRange: 3
   playerMesh: {fileID: 0}
+  camera: {fileID: 0}
 --- !u!114 &589081228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1512,6 +1513,7 @@ GameObject:
   - component: {fileID: 1862857442}
   - component: {fileID: 1862857441}
   - component: {fileID: 1862857446}
+  - component: {fileID: 1862857448}
   - component: {fileID: 1862857447}
   m_Layer: 0
   m_Name: Sphere
@@ -1638,9 +1640,24 @@ MonoBehaviour:
   transform: {fileID: 1862857439}
   mouseSensitivity: 1
   prop1test: {fileID: 169246189}
-  tastoTrasformazione: 101
+  trasformationKey: 101
   interactionRange: 1000
   playerMesh: {fileID: 574387252}
+  camera: {fileID: 1415959171}
+--- !u!114 &1862857448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862857438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf51da0e8e653a1448e8d554aab96c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1415959171}
+  centro: {fileID: 1862857439}
 --- !u!1 &1921437797
 GameObject:
   m_ObjectHideFlags: 0

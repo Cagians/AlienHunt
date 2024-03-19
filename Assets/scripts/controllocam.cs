@@ -12,7 +12,7 @@ public class controllocam : MonoBehaviour
     {
         if (Physics.Raycast(centro.position, cam.TransformDirection(-Vector3.forward),out hit,5))
             if(hit.collider != null)
-                cam.position = hit.point+cam.TransformDirection(Vector3.forward);
+                cam.position = hit.point+cam.TransformDirection(Vector3.forward)*2.5f;
          Debug.DrawRay(centro.position, cam.TransformDirection(-Vector3.forward)*5, Color.red);
     }
 }

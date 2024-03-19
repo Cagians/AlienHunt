@@ -14,7 +14,8 @@ public class mouse : MonoBehaviour
     public KeyCode trasformationKey = KeyCode.E; 
     public float interactionRange = 50f; // Distanza per interagire con gli oggetti
     public Transform playerMesh;
-
+    public Transform camera;
+    
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -25,6 +26,8 @@ public class mouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int layerMask=1<<6;
+        layerMask = ~layerMask;
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
  
@@ -34,11 +37,12 @@ public class mouse : MonoBehaviour
         transform.transform.eulerAngles = new Vector3(xRotation, transform.rotation.eulerAngles.y, 0f);
         transform.Rotate(Vector3.up * mouseX);
 
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray ray = new Ray(camera.position, camera.forward);
         RaycastHit hit;
-
+        
+        Debug.DrawRay(camera.position, camera.forward*interactionRange,Color.green);
         // Se il raycast colpisce un oggetto entro tot range
-        if (Physics.Raycast(ray, out hit, interactionRange))
+        if (Physics.Raycast(ray, out hit, interactionRange,layerMask))
         {
             // Controllo se l'oggetto colpito è interagibile e se il tasto viene premuto
             if (hit.collider.CompareTag("Trasformabile") && Input.GetKeyDown(trasformationKey))
