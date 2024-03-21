@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Cubo : MonoBehaviour
 {
+    private Collider collider;
+    public Transform player;
     public Rigidbody myRigidBody;
     public Transform direzione;
     public int speed = 30;
@@ -42,9 +44,11 @@ public class Cubo : MonoBehaviour
     //Funzione base di unity che verifica le collisioni
     //Se il player collide con il terreno, isGrounded=true
     void OnCollisionEnter(Collision collision)
-    {   
-        //Qua fa cose bit wise per verificare dov'è il terreno tipo, ma in poche parole verifica la collisione con il layer terreno
-        if ((terreno.value & (1 << collision.gameObject.layer)) != 0)
+    {
+        int index = 0;
+        collider = collision.collider;
+        ContactPoint punto = collision.GetContact(index);//non è fatto bene però dovremmo fare così per ora, prende la prima collisione con un oggetto e prende il suo punto di collisione
+        if (punto.point.y <player.position.y )
         {   
             isGrounded = true;
             Debug.Log("A terra pdb");
@@ -53,7 +57,7 @@ public class Cubo : MonoBehaviour
     //Stessa cosa, al momento della fine della collisione, significa che il player è in aria, quindi isGrounded=false
     void OnCollisionExit(Collision collision)
     {
-        if ((terreno.value & (1 << collision.gameObject.layer)) != 0)
+        if (collider == collision.collider)
         {
             isGrounded = false;
             Debug.Log("In aria pdb");
