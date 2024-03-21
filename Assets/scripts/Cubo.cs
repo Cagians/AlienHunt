@@ -45,10 +45,10 @@ public class Cubo : MonoBehaviour
     //Se il player collide con il terreno, isGrounded=true
     void OnCollisionEnter(Collision collision)
     {
-        int index = 0;
+        
         collider = collision.collider;
-        ContactPoint punto = collision.GetContact(index);//non è fatto bene però dovremmo fare così per ora, prende la prima collisione con un oggetto e prende il suo punto di collisione
-        if (punto.point.y <player.position.y )
+        ContactPoint punto = collision.GetContact(collision.contactCount-1);//non è fatto bene però dovremmo fare così per ora, prende la prima collisione con un oggetto e prende il suo punto di collisione
+        if (punto.point.y <player.position.y)
         {   
             isGrounded = true;
             Debug.Log("A terra pdb");

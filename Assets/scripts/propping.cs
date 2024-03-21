@@ -10,6 +10,8 @@ public class propping : MonoBehaviour
     public float interactionRange = 50f;
     int layerMask=1<<6;
     public Transform camerapref;
+    public Transform sphereTransform;
+    public Transform pTransform;
     public Transform cameramov;
     // Start is called before the first frame update
     void Start()
@@ -33,7 +35,7 @@ public class propping : MonoBehaviour
                 MeshFilter objectMesh = hit.collider.gameObject.GetComponent<MeshFilter>();
                 Transform transform=hit.collider.transform;
                 MeshCollider pMeshCollider=playerMesh.GetComponent<MeshCollider>();
-                Transform pTransform=playerMesh.GetComponent<Transform>();
+                pTransform=playerMesh.GetComponent<Transform>();
                 MeshFilter playerMeshFilter = playerMesh.GetComponent<MeshFilter>();
                 Renderer render=hit.collider.GetComponent<Renderer>();
                 // Se entrambi gli oggetti hanno una mesh
@@ -51,9 +53,24 @@ public class propping : MonoBehaviour
                     pTransform.rotation=transform.rotation;
                     
                     cameramov.position = camerapref.position + camera.TransformDirection(-Vector3.forward)*0.05f*transform.localScale.y;
-                    
+                    fixSphere();
                 }
             }
         }
+    }
+
+    void fixSphere()    //aggiusta la posizione, rotazione e scale della sfera alle dimensioni del player
+    {   
+        if (sphereTransform != null && pTransform != null)  //non dovrebbe servire questo check ma lo metto epr sicurezza
+        {
+            sphereTransform.position = pTransform.position;
+            sphereTransform.rotation = pTransform.rotation;
+            sphereTransform.localScale = pTransform.localScale;
+        }
+    }
+    void OnTriggerEnter(Collision collision){
+            
+            //da fare?
+
     }
 }

@@ -716,6 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bfae1ab861f3a44aa525e0879f42fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   myRigidBody: {fileID: 574387248}
   direzione: {fileID: 589081232}
   speed: 1500
@@ -810,7 +811,7 @@ Transform:
   m_GameObject: {fileID: 574387246}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.39, y: 2.64, z: 1.35}
+  m_LocalPosition: {x: -1.39, y: -0.43, z: 1.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -885,11 +886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transform: {fileID: 589081232}
   mouseSensitivity: 1
-  prop1test: {fileID: 0}
   trasformationKey: 101
-  interactionRange: 3
-  playerMesh: {fileID: 0}
-  camera: {fileID: 1415959171}
 --- !u!114 &589081228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,11 +1728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transform: {fileID: 1862857439}
   mouseSensitivity: 1
-  prop1test: {fileID: 169246189}
   trasformationKey: 101
-  interactionRange: 1000
-  playerMesh: {fileID: 574387252}
-  camera: {fileID: 1415959171}
 --- !u!114 &1862857448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,6 +1743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1415959171}
   centro: {fileID: 1862857439}
+  cameramov: {fileID: 1415959171}
 --- !u!1 &1921437797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1832,7 +1826,7 @@ GameObject:
   - component: {fileID: 1967989693}
   m_Layer: 0
   m_Name: ostacolo
-  m_TagString: Trasformabile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
