@@ -6,6 +6,8 @@ using UnityEngine;
 public class Cubo : MonoBehaviour
 {
     private Collider collider;
+    public int tempoRot = 30;
+    public KeyCode ruota;
     public Transform player;
     public Rigidbody myRigidBody;
     public Transform direzione;
@@ -38,7 +40,7 @@ public class Cubo : MonoBehaviour
         float vert = Input.GetAxis("Horizontal");
         float oriz = Input.GetAxis("Vertical");
         mov.force = direzione.TransformDirection(new Vector3(vert,0,oriz)*speed*Time.deltaTime);
-
+        AggiustaRot();
         
     }
     //Funzione base di unity che verifica le collisioni
@@ -79,4 +81,13 @@ public class Cubo : MonoBehaviour
             Debug.Log("In aria pdb");
         }
     }
+
+    void AggiustaRot()
+    {
+        if(Input.GetKey(ruota)){
+            player.rotation = Quaternion.RotateTowards(player.rotation,direzione.rotation, tempoRot * Time.deltaTime);
+        }
+            
+    }
+
 }
