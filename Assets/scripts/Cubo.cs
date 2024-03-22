@@ -46,13 +46,29 @@ public class Cubo : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         
-        collider = collision.collider;
+        /*collider = collision.collider;
         ContactPoint punto = collision.GetContact(collision.contactCount-1);//non è fatto bene però dovremmo fare così per ora, prende la prima collisione con un oggetto e prende il suo punto di collisione
         if (punto.point.y <player.position.y)
         {   
             isGrounded = true;
             Debug.Log("A terra pdb");
+        }*/
+        foreach (ContactPoint punto in collision.contacts)  
+        {
+            // Calcola l'angolo tra la normale del punto di contatto e l'asse Y
+            float angle = Vector3.Angle(punto.normal, Vector3.up);
+        
+            // Determina se la collisione avviene sotto il giocatore
+            bool isBelowPlayer = punto.point.y < player.position.y;
+            //60 gradi test
+            if (angle < 60 && isBelowPlayer)
+            {
+                isGrounded = true; // Considera il giocatore sul terreno o su una superficie inclinata su cui può saltare
+                Debug.Log("A terra pdb");
+                break;
+            }
         }
+
     }
     //Stessa cosa, al momento della fine della collisione, significa che il player è in aria, quindi isGrounded=false
     void OnCollisionExit(Collision collision)
