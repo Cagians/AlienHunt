@@ -7,16 +7,26 @@ public class propping : MonoBehaviour
     public Transform playerMesh;
     public Transform camera;
     public KeyCode trasformationKey = KeyCode.E;
+    public KeyCode originalFormKey = KeyCode.Q;
     public float interactionRange = 50f;
     int layerMask=1<<6;
     public Transform camerapref;
     public Transform sphereTransform;
     public Transform pTransform;
     public Transform cameramov;
+    private Mesh originalMesh;
+    private Material[] originalMaterial;
+    private Vector3 originalScale;
     // Start is called before the first frame update
     void Start()
     {
         layerMask = ~layerMask;
+        
+        MeshFilter originalMeshFilter = playerMesh.GetComponent<MeshFilter>();
+        originalMaterial = playerMesh.GetComponent<Renderer>().materials;
+        originalScale = playerMesh.localScale;
+
+        originalMesh = originalMeshFilter.mesh;
     }
 
     // Update is called once per frame
@@ -50,11 +60,18 @@ public class propping : MonoBehaviour
                     Renderer pRender=playerMesh.GetComponent<Renderer>();
                     pRender.SetMaterials(m);
                     pTransform.localScale=transform.localScale;
-                    pTransform.rotation=transform.rotation;
-                    
+                    pTransform.rotation = Quaternion.LookRotation(camera.forward, Vector3.up);
+
                     cameramov.position = camerapref.position + camera.TransformDirection(-Vector3.forward)*0.05f*transform.localScale.y;
                 }
             }
+        }
+
+        if (Input.GetKeyDown(originalFormKey))
+        {
+            playerMesh.GetComponent<MeshFilter>().mesh = originalMesh;
+            playerMesh.GetComponent<Renderer>().materials = originalMaterial;
+            playerMesh.localScale = originalScale;
         }
     }
 }

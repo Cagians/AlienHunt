@@ -32,10 +32,10 @@ public class Cubo : MonoBehaviour
         {
             Debug.Log("Salta pdb");
             
-            myRigidBody.velocity = new Vector3(myRigidBody.velocity.x, 0, myRigidBody.velocity.z);//Rimuovo ogni velocita residua, così che ogni salto sia uguale
-            myRigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);//Un metodo forse migliore per fare il salto, non ho messo time.deltaTime, dice che non serve bo 
+            myRigidBody.velocity = new Vector3(myRigidBody.velocity.x, 0, myRigidBody.velocity.z); // Rimuovo ogni velocita residua, così che ogni salto sia uguale
+            myRigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Un metodo forse migliore per fare il salto, non ho messo time.deltaTime, dice che non serve bo 
             /*myRigidBody.velocity = Vector2.up * speed * Time.deltaTime;*/
-            isGrounded=false;   //Il player è sicuramente in aria qui
+            isGrounded=false; // Il player è sicuramente in aria qui
         }
         float vert = Input.GetAxis("Horizontal");
         float oriz = Input.GetAxis("Vertical");
@@ -87,7 +87,5 @@ public class Cubo : MonoBehaviour
         if(Input.GetKey(ruota)){
             player.rotation = Quaternion.RotateTowards(player.rotation,direzione.rotation, tempoRot * Time.deltaTime);
         }
-            
     }
-
 }
